@@ -1,16 +1,15 @@
 const db = require("../config/database");
 
-const create = (firstname, lastname, email, hashedPassword, callback) => {
-  const sql =
-    "INSERT INTO user (firstname, lastname, email, password) VALUES (?, ?, ?, ?)";
-  db.query(sql, [firstname, lastname, email, hashedPassword], callback);
-};
-
 const findByEmail = (email, callback) => {
-  const sql = "SELECT * FROM user WHERE email = ?";
+  const sql = "SELECT * FROM `user` WHERE email = ?";
   db.query(sql, [email], callback);
 };
 
+const create = (username, email, hashedPassword, callback) => {
+  const sql =
+    "INSERT INTO `user` (username, email, password) VALUES ( ?, ?, ?)";
+  db.query(sql, [username, email, hashedPassword], callback);
+};
 module.exports = {
   create,
   findByEmail,
